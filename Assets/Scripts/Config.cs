@@ -7,4 +7,5 @@ public static class Config
     public static float ForceJump = 700f;
     public static float PitchSpan = 20f;
     public static float VisibilitySpan = 5f;
+    public static int NumberOfBands = 10;
 }
