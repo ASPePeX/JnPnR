@@ -3,6 +3,7 @@
 public class CharController : MonoBehaviour
 {
     private Rigidbody2D _rig;
+    private Transform _cameraPos;
 
     private Vector2 _forceVector;
     private Vector2 _velocityVector;
@@ -15,6 +16,7 @@ public class CharController : MonoBehaviour
     void Start()
     {
         _rig = GetComponent<Rigidbody2D>();
+        _cameraPos = Camera.main.transform;
         _forceVector = new Vector2();
         _velocityVector = new Vector2();
         _reJumpTime = 1f;
@@ -27,7 +29,7 @@ public class CharController : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
 
-        if (hit.distance > 0 && hit.distance < 0.35f)
+        if (hit.distance > 0 && hit.distance < 0.42f)
         {
             _grounded = true;
         }
@@ -53,7 +55,7 @@ public class CharController : MonoBehaviour
         if (transform.position.y < -2)
             Spawn();
 
-        Debug.Log(hit.distance + " Grounded: " + _grounded + " ReJump: " + _reJumpTimer + " Velo: " + _rig.velocity.ToString("G3"));
+        //Debug.Log(hit.distance + " Grounded: " + _grounded + " ReJump: " + _reJumpTimer + " Velo: " + _rig.velocity.ToString("G3"));
 
         _rig.AddForce(_forceVector.x * Vector2.right, Config.ForceModeMove);
         _rig.AddForce(_forceVector.y * Vector2.up, Config.ForceModeJump);
@@ -61,6 +63,8 @@ public class CharController : MonoBehaviour
         _velocityVector.x = Mathf.Clamp(_rig.velocity.x, -Config.MaxVelocity.x, Config.MaxVelocity.x);
         _velocityVector.y = Mathf.Clamp(_rig.velocity.y, -Config.MaxVelocity.y, Config.MaxVelocity.y);
         _rig.velocity = _velocityVector;
+
+        _cameraPos.position = Vector3.right * this.transform.position.x + Config.CameraOffset;
     }
 
     void Spawn()
