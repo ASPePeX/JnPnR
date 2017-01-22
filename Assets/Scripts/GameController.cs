@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -8,6 +9,16 @@ public class GameController : MonoBehaviour
 
 	void Update ()
 	{
+	    if (Input.GetKeyDown(KeyCode.Alpha1))
+	    {
+	        SceneManager.LoadScene(0);
+	    }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+	    {
+	        SceneManager.LoadScene(1);
+	    }
+
+
 	    amplitude = AudioAnalyzer.GetScaledOutput(0, Config.limits.x, Config.limits.y);
 
             //currentPitch = float.MinValue;

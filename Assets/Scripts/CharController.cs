@@ -10,6 +10,7 @@ public class CharController : MonoBehaviour
     private bool _grounded;
     private float _reJumpTime;
     private float _reJumpTimer;
+    private Vector3 spawnPos;
 
 
     // Use this for initialization
@@ -21,6 +22,7 @@ public class CharController : MonoBehaviour
         _velocityVector = new Vector2();
         _reJumpTime = 1f;
         _reJumpTimer = -1;
+        spawnPos = this.transform.position;
         Spawn();
     }
 
@@ -69,7 +71,7 @@ public class CharController : MonoBehaviour
 
     void Spawn()
     {
-        this.transform.position = Config.SpawnPosition;
+        this.transform.position = spawnPos;
         _rig.velocity = Vector2.zero;
     }
 }
