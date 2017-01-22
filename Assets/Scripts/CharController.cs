@@ -74,4 +74,12 @@ public class CharController : MonoBehaviour
         this.transform.position = spawnPos;
         _rig.velocity = Vector2.zero;
     }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "EndGame")
+            Spawn();
+
+    }
+
 }

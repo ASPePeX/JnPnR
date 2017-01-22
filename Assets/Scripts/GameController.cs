@@ -17,7 +17,10 @@ public class GameController : MonoBehaviour
 	    {
 	        SceneManager.LoadScene(1);
 	    }
-
+        else if (Input.GetKeyDown(KeyCode.Escape))
+	    {
+	        Application.Quit();
+	    }
 
 	    amplitude = AudioAnalyzer.GetScaledOutput(0, Config.limits.x, Config.limits.y);
 
